@@ -60,10 +60,15 @@ public:
       Temp = Start;
       NewN = new Node();
       NewN->value = value;
-      while (Temp->value < aftervalue && Temp->Next != NULL)
+      while (Temp->value <= aftervalue && Temp->Next != NULL)
       {
         Curr = Temp;
         Temp = Temp->Next;
+      }
+      if(Temp==NULL)
+      {
+        cout<<aftervalue<<" is not found"<<endl;
+        return 0;
       }
       Curr->Next = NewN;
       NewN->Next = Temp;
@@ -117,14 +122,22 @@ public:
         cout << "Linked List is Null" << endl;
         return 0;
       }
-      Start = Start->Next;
+      if(Temp->Next==NULL)
+      {
+        Start=NULL;
+      }
+      else 
+      {
+        Start = Start->Next;
+      }
       cout << Temp->value << " is Removed from List" << endl;
-      free(Temp);
+      delete Temp;
     }
     catch (exception e)
     {
       throw e;
     }
+    return 1;
   }
 
   int Delete_End()
@@ -143,14 +156,19 @@ public:
         Curr = Temp;
         Temp = Temp->Next;
       }
-      Curr->Next = NULL;
+      if(Temp==Curr)
+      {
+        Start=NULL;
+      }
+      else{Curr->Next = NULL;}
       cout << Temp->value << " is Removed from List" << endl;
-      free(Temp);
+      delete Temp;
     }
     catch (exception e)
     {
       throw e;
     }
+    return 1;
   }
 
   int Delete_Bet()
@@ -165,14 +183,36 @@ public:
         cout << "Linked List is Null" << endl;
         return 0;
       }
-      
+
+      cout<<"Enter the value you want to delete...."<<endl;
+      cin>>value;
+
+      while(Temp->value!=value)
+      {
+        Curr=Temp;
+        Temp=Temp->Next;
+      }
+
+      if(Temp==Curr)
+      {
+        Start=NULL;
+      }
+      else if(Temp->Next==NULL)
+      {
+        Curr->Next=NULL;
+      }
+      else 
+      {
+        Curr->Next=Temp->Next;
+      }
       cout << Temp->value << " is Removed from List" << endl;
-      free(Temp);
+      delete Temp;
     }
     catch (exception e)
     {
       throw e;
     }
+    return 1;
   }
 
   int Show()
@@ -216,7 +256,8 @@ int main()
   SinglyLinkedList N;
   do
   {
-    cout << "Select Operation " << "1. Add at Start" << "2. Add in Between" << "3. Add at End" << "4. Delete At Start" << "5. Search & Delete" << "6. Delete At End" << "7. Show" << " 8. Exit" << endl;
+    cout << "Select Operation "<<endl; 
+    cout<< "1. Add at Start" << "2. Add in Between" << "3. Add at End" << "4. Delete At Start" << "5. Search & Delete" << "6. Delete At End" << "7. Show" << " 8. Exit" << endl;
     cin >> ch;
     switch (ch)
     {
@@ -233,7 +274,7 @@ int main()
       N.Delete_Beg();
       break;
     case 5:
-      N.Delete_Beg();
+      N.Delete_Bet();
       break;
     case 6:
       N.Delete_End();
