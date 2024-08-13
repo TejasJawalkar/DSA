@@ -1,13 +1,11 @@
 //stack using array implementation
 #include<stdio.h>
-#include<conio.h>
+#include<iostream>
 #define SIZE 100
 int a[SIZE],no,i,sorted,j,temp;
 
-void main()
+int main()
 {
-clrscr();
-
 printf("\nEnter Array Limit....\n");
 scanf("%d",&no);
 
@@ -48,6 +46,5 @@ for(i=0;i<=no-1;i++)
 {
 	printf("%d\t",a[i]);
 }
-
-getch();
+return 0;
 }
