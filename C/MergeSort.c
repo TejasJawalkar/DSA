@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 #define SIZE 100
 
 int sorting[SIZE], A1[SIZE], A2[SIZE], i, j, k;
