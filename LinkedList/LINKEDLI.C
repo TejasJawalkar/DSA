@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <conio.h>
+#include <stdlib.h>
 struct node
 {
 	int data;
@@ -18,7 +19,6 @@ void show();
 
 void add_beg()
 {
-	clrscr();
 	printf("\nEnter the value\n");
 	scanf("%d", &val);
 	newnode = (struct node *)malloc(sizeof(struct node));
@@ -39,7 +39,6 @@ void add_beg()
 void add_bet()
 {
 	int ch;
-	clrscr();
 	printf("\nEnter value\n");
 	scanf("%d", &val);
 	printf("\nEnter value where want to save\n");
@@ -60,7 +59,6 @@ void add_bet()
 
 void add_end()
 {
-	clrscr();
 	printf("\nEnter value\n");
 	scanf("%d", &val);
 	newnode = (struct node *)malloc(sizeof(struct node));
@@ -76,7 +74,6 @@ void add_end()
 
 void del_beg()
 {
-	clrscr();
 	temp=start;
 	if(temp==NULL)
 	{
@@ -93,7 +90,6 @@ void del_beg()
 
 void del_end()
 {
-	clrscr();
 	temp=start;
 	if(temp==NULL)
 	{
@@ -124,7 +120,6 @@ void del_end()
 
 void show()
 {
-	clrscr();
 	temp = start;
 
 	if(temp==NULL)
@@ -170,7 +165,6 @@ void del_bet()
 void main()
 {
 	int ch;
-	clrscr();
 	do
 	{
 		printf("\nSelect Operation\n");

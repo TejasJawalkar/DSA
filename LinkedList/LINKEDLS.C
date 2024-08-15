@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<conio.h>
+#include <stdlib.h>
 
 struct node {
 	void *data;
@@ -14,7 +15,6 @@ void addstart() {
     void *data;
     int ch;
     int data1; char data2; float data3;char *data4;
-    clrscr();
     printf("\nSelect type of value you want save....\n1.Int\t2.Char\t3.Float\t4.String\n");
     scanf("%d", &ch);
     if(ch==1)
@@ -69,7 +69,7 @@ void addstart() {
 
 
 void show()
-{       clrscr();
+{   
 	temp=start;
 	printf("\nFollwing is the output...\n");
 	while(temp!=NULL)
@@ -93,7 +93,6 @@ void show()
 void main()
 {
 int ch;
-clrscr();
 
 do{
 printf("\n");

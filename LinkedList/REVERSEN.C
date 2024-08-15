@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<conio.h>
+#include <stdlib.h>
 
 struct node{
 	int value;
@@ -13,7 +14,6 @@ void reverse();
 void add()
 {
 	int val;
-	clrscr();
 	printf("\nEnter the value\n");
 	scanf("%d",&val);
 	newn=(struct node*)malloc(sizeof(struct node));
@@ -32,11 +32,10 @@ void add()
 
 void show()
 {
-	clrscr();
 	printf("\nLinked List\n\n");
 	temp=start;
 	if(temp==NULL)
-	{       clrscr();
+	{
 		printf("\nLinked List is Null\n\n");
 	}
 	else
@@ -52,7 +51,6 @@ void show()
 
 void reverse()
 {
-	clrscr();
 	Curr=start;
 	while(Curr!=NULL)
 	{
@@ -68,7 +66,6 @@ void reverse()
 void main()
 {
 	int ch;
-	clrscr();
 	do{
 		printf("\nSelect Operation \t1. Add Node\t2.Show\t3.Show Reverse List\t4.Exit\n");
 		scanf("%d",&ch);
