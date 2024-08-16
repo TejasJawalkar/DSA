@@ -74,47 +74,47 @@ void add_end()
 
 void del_beg()
 {
-	temp=start;
-	if(temp==NULL)
+	temp = start;
+	if (temp == NULL)
 	{
 		printf("\nList is null no item found to delete.....\n");
 		return;
 	}
 	printf("Delete at begin...\n");
-	start=temp->next;
+	start = temp->next;
 
-	printf("%d",temp->data);
+	printf("%d", temp->data);
 
 	free(temp);
 }
 
 void del_end()
 {
-	temp=start;
-	if(temp==NULL)
+	temp = start;
+	if (temp == NULL)
 	{
 		printf("\nList is null no item found to delete.....\n");
 		return;
 	}
 
-	if(temp->next==NULL)
+	if (temp->next == NULL)
 	{
-		printf("\n%d is deleted\n",temp->data);
+		printf("\n%d is deleted\n", temp->data);
 		free(start);
 		free(temp);
-		start=NULL;
+		start = NULL;
 	}
 
 	else
 	{
-	while(temp->next!=NULL)
-	{
-		curr=temp;
-		temp=temp->next;
-	}
-	printf("\n%d is deleted\n",temp->data);
-	curr->next=NULL;
-	free(temp);
+		while (temp->next != NULL)
+		{
+			curr = temp;
+			temp = temp->next;
+		}
+		printf("\n%d is deleted\n", temp->data);
+		curr->next = NULL;
+		free(temp);
 	}
 }
 
@@ -122,7 +122,7 @@ void show()
 {
 	temp = start;
 
-	if(temp==NULL)
+	if (temp == NULL)
 	{
 		printf("\nList is null no item found to view.....\n");
 		return;
@@ -142,27 +142,38 @@ void show()
 void del_bet()
 {
 	int ch;
-	if(start==NULL)
+	if (start == NULL)
 	{
 		printf("\nList is null no items found to delete....\n");
 	}
 	else
 	{
-	printf("\nEnter the job you want delete.....\n");
-	scanf("%d",&ch);
-	temp=start;
-	while(temp->data!=ch && temp->next!=NULL)
-	{
-		curr=temp;
-		temp=temp->next;
-	}
-	curr->next=temp->next;
-	printf("\n%d is Deleted....\n",temp->data);
-	free(temp);
+		printf("\nEnter the job you want delete.....\n");
+		scanf("%d", &ch);
+		temp = start;
+		while (temp->data != ch )
+		{
+			curr = temp;
+			temp = temp->next;
+		}
+		if (temp == curr)
+		{
+			start = NULL;
+		}
+		else if (temp->next == NULL)
+		{
+			curr->next = NULL;
+		}
+		else
+		{
+			curr->next = temp->next;
+		}
+		printf("\n%d is Deleted....\n", temp->data);
+		free(temp);
 	}
 }
 
-void main()
+int main()
 {
 	int ch;
 	do
@@ -200,7 +211,7 @@ void main()
 		default:
 			printf("\nWrong Operation\n");
 		}
-	} while (ch <= 8 && ch!=0);
+	} while (ch <= 8 && ch != 0);
 
-	getch();
+	return 0;
 }
