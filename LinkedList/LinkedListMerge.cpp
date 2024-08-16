@@ -45,7 +45,7 @@ public:
       system("CLS");
       cout << "Enter Value to Save Into First List" << endl;
       cin >> value;
-      cout<<value<<endl;
+      
       NewN1 = new ListOne();
       NewN1->Data = value;
       NewN1->Next = Start1;
@@ -69,7 +69,7 @@ public:
         cout<<"Linked List 1 is Empty "<<endl;
         return 0;
       }
-      cout<<"Linked List 1";
+      cout<<"Linked List 1\n";
       while (Temp1!=NULL)
       {
         cout<<Temp1->Data<<"->";
@@ -115,7 +115,7 @@ public:
         cout<<"Linked List 2 is Empty "<<endl;
         return 0;
       }
-      cout<<"Linked List 2";
+      cout<<"Linked List 2\n";
       while (Temp2!=NULL)
       {
         cout<<Temp2->Data<<"->";
@@ -129,6 +129,14 @@ public:
     }
     return 0;
   }
+  
+  void assigndata(ListMerge*& Start,int data)
+  {
+    NewN3=new ListMerge();
+    NewN3->Data=data;
+    NewN3->Next=Start;
+    Start3=NewN3;
+  }
 
   int MergeList() override
   {
@@ -137,41 +145,29 @@ public:
       Temp1=Start1;
       Temp2=Start2;
 
-      NewN3=new ListMerge();
-      if(Start1==NULL)
-      {
-        cout<<"Linked List 1 is Empty"<<endl;
-        return 0;
-      } 
-      if(Start2==NULL)
-      {
-        cout<<"Linked List 2 is Empty"<<endl;
-        return 0;
-      }
+      // while (Temp1!=NULL && Temp2!=NULL)
+      // {
+      //   if(Temp1->Data>Temp2->Data)
+      //   {
+      //     assigndata(Start3,Temp1->Data);
+      //     Temp1=Temp1->Next;
+      //   }
+      //   else
+      //   {
+      //     assigndata(Start3,Temp2->Data);
+      //     Temp2=Temp2->Next;
+      //   }
+      // }
 
-      while ((Temp1->Next!=NULL && Temp1!=NULL) && (Temp2->Next!=NULL && Temp2!=NULL))
+      while (Temp1!=NULL)
       {
-        if(Temp1->Data<Temp2->Data)
-        {
-          NewN3->Data=Temp1->Data;
-        }
-        else
-        {
-          NewN3->Data=Temp1->Data;
-        }
-        NewN3->Next=Start3;
-        Start3=NewN3;
+        assigndata(Start3,Temp1->Data);
+        Temp1=Temp1->Next;
       }
-
-      while (Temp1->Next!=NULL)
+      while (Temp2!=NULL)
       {
-        NewN3->Data=Temp1->Data;
-        Start3=NewN3;
-      }
-      while (Temp2->Next!=NULL)
-      {
-        NewN3->Data=Temp2->Data;
-        Start3=NewN3;
+        assigndata(Start3,Temp2->Data);
+        Temp2=Temp2->Next;
       } 
     }
     catch (exception e)
@@ -230,7 +226,7 @@ int main()
     case 2:LData.ShowfromListOne();break;
     case 3:LData.InsertintoListTwo();break;
     case 4:LData.ShowfromListTwo();break;
-    case 5:LData.MergeList();
+    case 5:LData.MergeList(); break;
     case 6:LData.ShowfromListThree();break;
     case 7:system("CLS"); exit(0);break;
     default:cout<<"Wrong Operations..."<<endl; break;
