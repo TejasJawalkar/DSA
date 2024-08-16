@@ -1,5 +1,6 @@
 #include<conio.h>
 #include<stdio.h>
+#include <stdlib.h>
 
 void addbeg();
 void show();
@@ -22,7 +23,6 @@ void show();
 
 void add_beg()
 {
-	clrscr();
 	printf("\nEnter the Value\n");
 	scanf("%d",&val);
 	newnode=(struct node *)malloc(sizeof(struct node));
@@ -45,7 +45,6 @@ void add_beg()
 
 void add_end()
 {
-	clrscr();
 	printf("\nEnter the value\n");
 	scanf("%d",&val);
 	newnode=(struct node *)malloc(sizeof(struct node));
@@ -65,7 +64,6 @@ void add_bet()
 
 {
 	int chk=0;
-	clrscr();
 	printf("\nEnter value...\n");
 	scanf("%d",&val);
 	printf("\nWhere you want to place value after value\n");
@@ -84,13 +82,11 @@ void add_bet()
 	newnode->next=curr->next;
 	curr->next=newnode;
 	temp->prev=newnode;
-	free(chk);
-	free(val);
 }
 
 void del_start()
 {
-	clrscr();
+
 	if(start==NULL)
 	{		printf("Linked List is null.....");
 	}
@@ -101,13 +97,12 @@ void del_start()
 		temp->prev=NULL;
 		printf("%d is delete from start of linked list",start->data);
 		free(start);
-		start=temp;
+		delete temp;
 	}
 }
 
 void del_end()
 {
-	clrscr();
 	temp=start;
 	if(temp==NULL)
 	{
@@ -118,8 +113,8 @@ void del_end()
 		if(temp->next==NULL && temp->prev==NULL)
 		{
 			printf("%d is delete from list..\n",start->data);
-			free(temp);
-			free(start);
+			delete temp;
+			delete start;
 		}
 		else
 		{
@@ -131,14 +126,14 @@ void del_end()
 			printf("%d is delete from list..\n",temp->data);
 			curr->next=NULL;
 			temp->prev=NULL;
-			free(temp);
+			delete temp;
 		}
 	}
 }
 
 void del_bet()
 {       int chk=0;
-	clrscr();
+	
 	printf("Enter value to delete");
 	scanf("%d",&chk);
 	if(start==NULL)
@@ -157,20 +152,16 @@ void del_bet()
 		curr->next=trail;
 		trail->prev=curr;
 		printf("%d is delete from list....",temp->data);
-		free(temp);
+		delete temp;
 	}
 }
 
-
-
-void show(){
-	clrscr();
+void show(){	
 	printf("\nDoubly linked list\n");
 	temp=start;
 	if(temp==NULL)
 	{
 		printf("\nLinked is null no data to show.....\n");
-		return 0;
 	}
 	do{
 		printf("<-%d|%d|%d->",temp->prev,temp->data,temp->next);
@@ -179,10 +170,9 @@ void show(){
 }
 
 
-void main()
+int main()
 {
 int ch;
-	clrscr();
 	do
 	{
 		printf("\n\nSelect Operation\n");
@@ -215,6 +205,6 @@ int ch;
 		}
 	} while (ch <= 8 && ch!=0);
 
-	getch();
+return 0;
 }
 
