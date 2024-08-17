@@ -5,7 +5,6 @@
 void main()
 {
 	int  a1[SIZE1],a2[SIZE1],a3[SIZE1],sum,i,j,limit1,limit2,maxlimit=0,carry=0;
-	clrscr();
 	//get first array limit
 	printf("\nEnter Limit for Array 1\n");
 	scanf("%d",&limit1);

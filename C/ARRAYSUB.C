@@ -3,10 +3,9 @@
 #include<conio.h>
 #define SIZE 100
 
-void main()
+int main()
 {
 	int ar[SIZE],no,index,sum=0,i;
-	clrscr();
 	printf("\nEnter size of array\n");
 	scanf("%d",&no);
 	printf("\nEnter array elements\n");
@@ -24,7 +23,7 @@ void main()
 	scanf("%d",&index);
 	if(index>no)
 	{
-		clrscr();
+		printf("system('CLS')");
 		printf("\nIndex out of range\n");
 	}
 	else
@@ -36,5 +35,5 @@ void main()
 		printf("\n%d is sum of elements till index\n",sum);
 	}
 	printf("\n");
-	getch();
+	return 0;
 }
