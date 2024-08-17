@@ -9,7 +9,7 @@ public:
   Node *Next;
 };
 
-Node *Start, *Curr, *NewN, *Temp = NULL;
+Node *Start, *Curr, *NewN, *Temp,*Trail = NULL;
 
 class DoublyLinkedList
 {
@@ -120,11 +120,60 @@ int DoublyLinkedList::del_beg()
   return 0; 
 }
 
-int DoublyLinkedList::del_bet() { return 0; }
+int DoublyLinkedList::del_bet() 
+{
+  int value;
+  Temp=Start;
+  system("cls");
+  cout<<"Enter the value from list to delete.."<<endl; 
+  cin>>value;
+
+  if(Temp==NULL)
+  {
+    cout<<"List is Empty.."<<endl;
+    return 0;
+  }
+
+  while(Temp->Data!=value)
+  {
+    Curr=Temp;
+    Temp=Temp->Next;
+    Trail=Temp->Next;
+  }
+
+  if(Temp==NULL)
+  {
+    cout<<value<<" value not found in list"<<endl;
+    return 0;
+  }
+
+  Curr->Next=Temp->Next;
+  Trail->Prev=Temp->Prev;
+  cout<<Temp->Data<<" Is delete From List"<<endl;
+  delete Temp;
+
+  return 0; 
+}
 
 int DoublyLinkedList::del_end() 
 {
-   
+  Temp=Start;
+  system("CLS");
+  if (Temp==NULL)
+  {
+    cout<<"List is Empty.."<<endl;
+    return 0;
+  }
+  
+  while (Temp->Next!=NULL)
+  {
+    Curr=Temp;
+    Temp=Temp->Next;
+  }
+  Curr->Next=NULL;
+  cout<<Temp->Data <<" Is Deleted"<<endl;
+  delete Temp;
+  
   return 0; 
 }
 
