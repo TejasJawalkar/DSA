@@ -104,11 +104,29 @@ int DoublyLinkedList::add_end()
   return 0;
 }
 
-int DoublyLinkedList::del_beg() { return 0; }
+int DoublyLinkedList::del_beg() 
+{
+  Temp=Start;
+  if(Temp==NULL)
+  {
+    cout<<"List is Null"<<endl;
+    return 0;
+  } 
+  Curr=Temp->Next;
+  Curr->Prev=NULL;
+  Start=Curr;
+  cout<<Temp->Data <<" Deleted from List"<<endl;
+  delete Temp;
+  return 0; 
+}
 
 int DoublyLinkedList::del_bet() { return 0; }
 
-int DoublyLinkedList::del_end() { return 0; }
+int DoublyLinkedList::del_end() 
+{
+   
+  return 0; 
+}
 
 int DoublyLinkedList::show()
 {
