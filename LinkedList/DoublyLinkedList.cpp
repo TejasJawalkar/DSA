@@ -204,12 +204,11 @@ int main()
   system("CLS");
   do
   {
-    printf("\nSelect Operation\n");
-    printf("1.Add_at_start\t2.Add_in_between\t3.Add_at_end\t4.Del_at_start\n5.Del_at_Between\t6.Del_at_End\t7.Show\t8.Exit\n");
-    scanf("%d", &ch);
+    cout<<"\nSelect Operation\n";
+    cout<<"1.Add_at_start\t2.Add_in_between\t3.Add_at_end\t4.Del_at_start\n5.Del_at_Between\t6.Del_at_End\t7.Show\t8.Exit\n";
+    cin>>ch;
     switch (ch)
     {
-
     case 1:
       DLS.add_beg();
       break;
