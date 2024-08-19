@@ -1,11 +1,13 @@
 #include <stdio.h>
-#include <memory.h>
+#include<stdlib.h>
 
 struct Node
 {
   int Data;
   struct Node *Next;
 };
+
+struct Node *Start = NULL, *NewN = NULL, *Temp = NULL, *Trail = NULL, *Curr = NULL;
 
 int add_beg();
 int add_bet();
@@ -15,17 +17,69 @@ int del_bet();
 int del_end();
 int show();
 
-
 int add_beg()
 {
   int value;
+  printf("\nEnter Node Value\n");
+  scanf("%d", &value);
+
+  NewN = (struct Node *)malloc(sizeof(struct Node));
+  NewN->Data = value;
+
+  if(Start==NULL)
+  {
+    Start=NewN;
+    NewN->Next=Start;
+  } 
+  else
+  {
+    Temp=Start;
+    NewN->Next=Temp;
+    Start=NewN;
+  }
+  return 1;
 }
-int add_bet(){}
-int add_end(){}
-int del_beg(){}
-int del_bet(){}
-int del_end(){}
-int show(){}
+int add_bet()
+{
+
+  return 1;
+}
+
+int add_end()
+{
+  return 1;
+}
+int del_beg()
+{
+  return 1;
+}
+int del_bet()
+{
+  return 1;
+}
+int del_end()
+{
+  return 1;
+}
+int show()
+{
+  Temp = Start;
+  if (Temp == NULL)
+  {
+    printf("\nLinked List is Null\n");
+    return 0;
+  }
+  printf("\nList =\n");
+  do
+  {
+    printf("%d->%d",Temp->Data);
+    Temp = Temp->Next;
+  }while (Temp->Next!=Start);
+  
+  printf("\n");
+
+  return 1;
+}
 
 int main()
 {
@@ -60,12 +114,12 @@ int main()
       show();
       break;
     case 8:
-      system("CLS");
       exit(0);
       break;
     default:
       printf("Wrong Operation....");
       break;
     }
-  } while (ch <= 7);
+  } while (ch <= 8);
+  return 0;
 }
