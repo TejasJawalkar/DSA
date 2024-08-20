@@ -21,6 +21,7 @@ public:
           temp = BSort[j];
           BSort[j] = BSort[j + 1];
           BSort[j + 1] = temp;
+          
           sorted = 1;
         }
       }
