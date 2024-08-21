@@ -7,7 +7,7 @@ struct Node
   struct Node *Next;
 };
 
-struct Node *Start = NULL, *NewN = NULL, *Temp = NULL, *Trail = NULL, *Curr = NULL;
+struct Node *Start, *NewN, *Temp = NULL, *Trail = NULL, *Curr = NULL;
 
 int add_beg();
 int add_bet();
@@ -34,33 +34,107 @@ int add_beg()
   else
   {
     Temp=Start;
-    NewN->Next=Temp;
+    Curr=Start;
+    do
+    {
+      Temp=Temp->Next;
+    } while (Temp->Next!=Start);
     Start=NewN;
+    Start->Next=Curr;
+    Temp->Next=Start;
   }
   return 1;
 }
+
 int add_bet()
 {
+  int value,no;
+  Temp=Start;
+  NewN=(struct Node *) malloc(sizeof(struct Node));
+  if(Temp==NULL)
+  {
+    printf("\nCannot Insert..List is Null\n");
+    return 0;
+  }
+  
+  printf("\nEnter Value to Save in Node\n");
+  scanf("%d",&value);
 
+  printf("\nEnter Value to Search in Node\n");
+  scanf("%d",&no);
+  
+  do
+  {
+    Curr=Temp;
+    Temp=Temp->Next;
+  }while (Temp->Data<no && Temp->Next!=Start); 
+  
+  if (Temp==Start)
+  {
+    printf("Value Enterd by you to Search is not Found");
+    return 0;
+  }
+  NewN->Data=value;
+  Curr->Next=NewN;
+  NewN->Next=Temp;
+  
   return 1;
 }
 
 int add_end()
 {
+  int value;
+  Temp=Start;
+  if(Temp==NULL)
+  {
+    printf("\nCannot Insert...\nList is Null...\n");
+    return 0;
+  }
+  printf("\nEnter Node Value....\n");
+  scanf("%d",&value);
+  NewN=(struct Node*)malloc(sizeof(struct Node));
+
+  NewN->Data=value;
+  do 
+  {
+    Temp=Temp->Next;
+  }while (Temp->Next!=Start);
+
+  NewN->Next=Temp->Next;
+  Temp->Next=NewN;
   return 1;
 }
+
 int del_beg()
 {
-  return 1;
+  Temp=Start;
+  if(Temp==NULL)
+  {
+    printf("\nCannot Delete...List is Null\n");
+    return 0;
+  }
+  Temp=Start;
+  Curr=Start;
+  Start=Curr->Next;
+  while (Temp->Next!=Start)
+  {
+    Temp=Temp->Next;
+  }
+  Temp->Next=Start;
+  free(Curr);
+  return 0;
 }
+
 int del_bet()
 {
   return 1;
 }
+
 int del_end()
 {
   return 1;
 }
+
 int show()
 {
   Temp = Start;
@@ -72,12 +146,10 @@ int show()
   printf("\nList =\n");
   do
   {
-    printf("%d->%d",Temp->Data);
+    printf("|%d|%p|->",Temp->Data,Temp->Next);
     Temp = Temp->Next;
-  }while (Temp->Next!=Start);
-  
+  }while (Temp!=Start);
   printf("\n");
-
   return 1;
 }
 
