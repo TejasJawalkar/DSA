@@ -1,10 +1,10 @@
 #include<stdio.h>
-#include<conio.h>
+#include<stdlib.h>
 #define SIZE 50
 void main()
 {
 	int ar[SIZE],j,i,no,limit,a1,a2,found=0;
-	clrscr();
+	system("cls");
 	printf("\nEnter array limit...\n");
 	scanf("%d",&limit);
 
@@ -32,11 +32,10 @@ void main()
 	}
 	if(found==0)
 	{
-		printf("\nArray has no that will calculate the two sum\n");
+		printf("\nArray has no numbers that will calculate the two sum\n");
 	}
 	else
 	{
 		printf("\nTwo Sum=\t%d+%d=%d\n",a1,a2,no);
 	}
-getch();
 }

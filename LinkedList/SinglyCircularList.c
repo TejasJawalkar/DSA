@@ -20,6 +20,7 @@ int show();
 int add_beg()
 {
   int value;
+  system("cls");
   printf("\nEnter Node Value\n");
   scanf("%d", &value);
 
@@ -49,6 +50,7 @@ int add_beg()
 int add_bet()
 {
   int value,no;
+  system("cls");
   Temp=Start;
   NewN=(struct Node *) malloc(sizeof(struct Node));
   if(Temp==NULL)
@@ -84,6 +86,7 @@ int add_bet()
 int add_end()
 {
   int value;
+  system("cls");
   Temp=Start;
   if(Temp==NULL)
   {
@@ -107,36 +110,90 @@ int add_end()
 
 int del_beg()
 {
+  system("cls");
   Temp=Start;
+  Curr=Start;
   if(Temp==NULL)
   {
     printf("\nCannot Delete...List is Null\n");
     return 0;
-  }
-  Temp=Start;
-  Curr=Start;
-  Start=Curr->Next;
-  while (Temp->Next!=Start)
+  }  
+  do
   {
     Temp=Temp->Next;
-  }
+  } while (Temp->Next!=Curr);
+
+  Trail=Start->Next;
+  Start=Trail;
   Temp->Next=Start;
+  printf("%d is removed from list from begining....",Curr->Data);
   free(Curr);
   return 0;
 }
 
 int del_bet()
 {
+  int value;
+  system("cls");
+  if(Temp==NULL)
+  {
+    printf("\nCannot Delete...List is Empty....\n");
+    return 0;
+  }
+  show();
+  printf("\n");
+  printf("\nEnter the Value to delete from list....\n");
+  scanf("%d",&value);
+  do
+  {
+    Curr=Temp;
+    Temp=Temp->Next;
+  } while (Temp->Data!=value);
+  
+  if(Temp==Start)
+  {
+    printf("\nNo Value found entered by you...\n");
+    return 0;
+  }
+
+  if(Temp->Next==Start)
+  {
+    Curr->Next=Start;
+  }
+  else 
+  {
+    Curr->Next=Temp->Next;
+  }
+  free(Temp);
   return 1;
 }
 
 int del_end()
 {
+  system("cls");
+  Temp=Start;
+  if(Temp==NULL)
+  {
+    printf("Cannot Delete....List is Empty....");
+    return 0;
+  }
+  do
+  {
+    Curr=Temp;
+    Temp=Temp->Next;
+  } while (Temp->Next!=Start);
+  
+  Curr->Next=Start;
+
+  printf("%d is removed from list in end.....",Temp->Data);
+  free(Temp);
+  
   return 1;
 }
 
 int show()
 {
+  system("cls");
   Temp = Start;
   if (Temp == NULL)
   {
@@ -156,6 +213,7 @@ int show()
 int main()
 {
   int ch;
+  system("cls");
   do
   {
     printf("\nSelect Operation\n");
