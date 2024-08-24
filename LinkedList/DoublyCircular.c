@@ -8,7 +8,7 @@ struct Node
   struct Node *Next;
 };
 
-struct Node *Start, *NewN, *Temp = NULL, *Trail = NULL, *Curr = NULL;
+struct Node *Start=NULL, *NewN, *Temp = NULL, *Trail = NULL, *Curr = NULL;
 
 int add_beg();
 int add_bet();
@@ -18,19 +18,225 @@ int del_bet();
 int del_end();
 int show();
 
-int add_beg(){}
+int add_beg()
+{
+  int value;
+  system("cls");
+  printf("\nEnter Node Value...\n");
+  scanf("%d" , &value);
+  
+  if(Start==NULL){printf("Start is null");};
 
-int add_bet(){}
+  NewN=(struct Node*)malloc(sizeof(struct Node));
+  NewN->Data=value;
+  if(Start==NULL)
+  {
+    Start=NewN;
+    Start->Next=Start;
+    Start->Prev=Start;
+  }
+  else if(Start->Next==Start)
+  {
+    //when node has only one node
+    Temp=Start;
+    Start=NewN;
+    Start->Next=Temp;
+    Start->Prev=Temp;
+    Temp->Prev=Start;
+    Temp->Next=Start;
+  }
+  else
+  {
+    //when node has only multiple node
+    Trail=Start;
+    Temp=Start->Prev;
 
-int add_end(){}
+    Start=NewN;
+    
+    Trail->Prev=Start;
+    Start->Next=Trail;
 
-int del_beg(){}
+    Temp->Next=Start;
+    Start->Prev=Temp;
+  }
+  return 1;
+}
 
-int del_bet(){}
+int add_bet()
+{
+  int value,value1;
+  Temp=Start;
+  system("cls");
+  if(Temp==NULL)
+  {
+    printf("\nCannot Add...List is Null...\n");
+    return 0;
+  }
+  printf("\nEnter the Node Value\n");
+  scanf("%d",&value);
+  
+  printf("\n\nEnter the Value to Search and Place the value Node Before... \n");
+  scanf("%d",&value1);
+  
+  NewN=(struct Node*)malloc(sizeof(struct Node));
+  NewN->Data=value;
 
-int del_end(){}
+  do
+  {
+    Curr=Temp;
+    Temp=Temp->Next;
+  }while (Temp->Data<value1 && Temp->Next!=Start); 
 
-int show(){}
+  if(Temp==Start)
+  {
+    printf("\nSearching value is not found\n");
+    return 0;
+  }
+
+  Curr->Next=NewN;
+  NewN->Prev=Curr;
+  NewN->Next=Temp;
+  Temp->Prev=NewN;
+
+}
+
+int add_end()
+{
+  int value;
+  system("cls");
+  printf("\nEnter Node Value...\n");
+  scanf("%d" , &value);
+  
+  if(Start==NULL){printf("List is null");};
+
+  NewN=(struct Node*)malloc(sizeof(struct Node));
+  NewN->Data=value;
+
+  Temp=Start->Prev;
+  Start->Prev=NewN;
+  NewN->Next=Temp->Next;
+  NewN->Prev=Temp;
+  Temp->Next=NewN;
+
+  return 1;
+}
+
+int del_beg()
+{
+  Temp=Start;
+  if(Temp==NULL)
+  {
+    printf("\nCannot Delete...List is Null...\n");
+    return 0;
+  }
+  if(Temp->Next==Start)
+  {
+    printf("%d is deleted and start is null",Temp->Data);
+    free(Temp);
+    Start=NULL;
+  }
+  else
+  {
+    Trail=Temp->Prev;
+    Start=Temp->Next;
+    Start->Prev=Trail;
+    Trail->Next=Start;
+
+    printf("%d is deleted from list...",Temp->Data);
+    free(Temp);
+  }
+  return 1;
+}
+
+int del_bet()
+{
+  int value;
+  Temp=Start;
+  system("cls");
+  if(Temp==NULL)
+  {
+    printf("\nCannot Delete...List is Null...\n");
+    return 0;
+  }
+  
+  printf("\nEnter the value to delete it from list...\n");
+  scanf("%d",&value);
+
+  do
+  {
+    Curr=Temp;
+    Temp=Temp->Next;
+  } while (Temp->Data!=value && Temp->Next!=Start);
+
+  if(Temp==Start)
+  {
+    printf("\nValue your are searching for is not found in list..\n");
+    return 0;
+  }
+
+  if(Temp->Next==Start)
+  {
+    Start=NULL;
+    printf("\n%d is delete from list..\n",Temp->Data);
+    free(Temp);
+  }
+  else 
+  {
+    Trail=Temp->Next;
+    Curr->Next=Trail;
+    Trail->Prev=Curr;
+    printf("\n%d is delete from list..\n",Temp->Data);
+    free(Temp);
+  }
+
+
+}
+
+int del_end()
+{
+  Temp=Start;
+  if(Temp==NULL)
+  {
+    printf("\nCannot Delete...List is Null...\n");
+    return 0;
+  }
+  if(Temp->Next==Start)
+  {
+    printf("%d is deleted and start is null",Temp->Data);
+    free(Temp);
+    Start=NULL;
+  }
+  else
+  {
+    Temp=Start->Prev;
+    Trail=Temp->Prev;
+    Trail->Next=Temp->Next;
+    Start->Prev=Temp->Prev;
+
+    printf("%d is deleted and start is null",Temp->Data);
+    free(Temp);
+  }
+
+}
+
+int show()
+{
+  Temp=Start;
+  system("cls");
+  if(Temp==NULL)
+  {
+    printf("\nCannot Show...List is Null...\n");
+    return 0;
+  }
+  do
+  {
+    printf("<-|%p|%d|%p|->",Temp->Prev,Temp->Data,Temp->Next);
+    Temp=Temp->Next;
+  } while (Temp!=Start);
+
+  printf("\n\n");
+  
+}
 
 
 int main()
@@ -67,6 +273,7 @@ int main()
       show();
       break;
     case 8:
+      system("cls");
       exit(0);
       break;
     default:
