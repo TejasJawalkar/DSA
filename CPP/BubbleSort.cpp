@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include<stdlib>
 using namespace std;
 
 class BSorting
@@ -54,7 +55,7 @@ int main()
 {
   BSorting b;
   int limit;
-
+  system("cls");
   cout << "Enter size of array..." << endl;
   cin >> limit;
   b.maxsize = limit;
