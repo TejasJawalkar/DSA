@@ -4,7 +4,7 @@
 
 int colors[SIZE],limit,i,j;
 
-void main()
+int main()
 {
   int c0,c1,c2=0;
   system("cls");
