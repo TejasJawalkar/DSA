@@ -5,10 +5,11 @@ using namespace std;
 void pattern10(int n)
 {
   cout << "Pattern 5=\n\n";
-  for (int row = n; row >= 0; row--)
+  for (int row = n; row > 0; row--)
   {
     for (int space = 0; space < n - row + 1; space++)
     {
+
       cout << " ";
     }
     for (int star = 0; star < 2 * row - 1; star++)
@@ -17,6 +18,7 @@ void pattern10(int n)
     }
     for (int space = 0; space < n - row + 1; space++)
     {
+
       cout << " ";
     }
     cout << endl;
